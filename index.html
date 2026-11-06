@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>University Portals</title>
+
+  <!-- Website Tab Icon (Favicon) -->
+  <link rel="icon" type="image/png" href="logo.png">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #0f172a;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      padding: 32px 20px;
+    }
+
+    .btn-container {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      max-width: 1100px;
+    }
+
+    .college-btn {
+      display: inline-block;
+      padding: 16px 28px;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #ffffff;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      text-align: center;
+      border: 1px solid transparent;
+    }
+
+    /* Active Buttons */
+    .btn-augsburg {
+      background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%);
+      box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.4);
+    }
+
+    .btn-augsburg:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 32px -4px rgba(37, 99, 235, 0.6);
+    }
+
+    .btn-aalen {
+      background: linear-gradient(135deg, #059669 0%, #0d9488 100%);
+      box-shadow: 0 10px 25px -5px rgba(13, 148, 136, 0.4);
+    }
+
+    .btn-aalen:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 32px -4px rgba(13, 148, 136, 0.6);
+    }
+
+    .btn-coburg {
+      background: linear-gradient(135deg, #ea580c 0%, #d97706 100%);
+      box-shadow: 0 10px 25px -5px rgba(234, 88, 12, 0.4);
+    }
+
+    .btn-coburg:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 32px -4px rgba(234, 88, 12, 0.6);
+    }
+
+    .btn-uni-assist {
+      background: linear-gradient(135deg, #7c3aed 0%, #9333ea 100%);
+      box-shadow: 0 10px 25px -5px rgba(124, 58, 237, 0.4);
+    }
+
+    .btn-uni-assist:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 32px -4px rgba(124, 58, 237, 0.6);
+    }
+
+    .btn-albstadt {
+      background: linear-gradient(135deg, #e11d48 0%, #be123c 100%);
+      box-shadow: 0 10px 25px -5px rgba(225, 29, 72, 0.4);
+    }
+
+    .btn-albstadt:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 32px -4px rgba(225, 29, 72, 0.6);
+    }
+
+    .btn-weimar {
+      background: linear-gradient(135deg, #0d9488 0%, #0284c7 100%);
+      box-shadow: 0 10px 25px -5px rgba(13, 148, 136, 0.4);
+    }
+
+    .btn-weimar:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 32px -4px rgba(13, 148, 136, 0.6);
+    }
+
+    .btn-amberg-weiden {
+      background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+      box-shadow: 0 10px 25px -5px rgba(79, 70, 229, 0.4);
+    }
+
+    .btn-amberg-weiden:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 32px -4px rgba(79, 70, 229, 0.6);
+    }
+
+    .btn-hof {
+      background: linear-gradient(135deg, #0ea5e9 0%, #2563eb 100%);
+      box-shadow: 0 10px 25px -5px rgba(14, 165, 233, 0.4);
+    }
+
+    .btn-hof:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 32px -4px rgba(14, 165, 233, 0.6);
+    }
+
+    .btn-duisburg-essen {
+      background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+      box-shadow: 0 10px 25px -5px rgba(2, 132, 199, 0.4);
+    }
+
+    .btn-duisburg-essen:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 32px -4px rgba(2, 132, 199, 0.6);
+    }
+
+    .college-btn:active {
+      transform: translateY(0);
+    }
+
+    /* Disabled Look Buttons */
+    .btn-disabled {
+      background: rgba(255, 255, 255, 0.04);
+      color: #64748b;
+      border: 1px dashed rgba(255, 255, 255, 0.14);
+      box-shadow: none;
+      cursor: not-allowed;
+      opacity: 0.65;
+      user-select: none;
+      pointer-events: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="btn-container">
+    <!-- Active Link Buttons -->
+    <a class="college-btn btn-augsburg"
+      href="https://vibs.uni-augsburg.de/qisserver/pages/cs/sys/portal/hisinoneStartPage.faces" target="_blank"
+      rel="noopener noreferrer">
+      Universität Augsburg
+    </a>
+
+    <a class="college-btn btn-aalen" href="https://onlineportal.bewerbung.htw-aalen.de/bewerbung" target="_blank"
+      rel="noopener noreferrer">
+      Hochschule Aalen
+    </a>
+
+    <a class="college-btn btn-coburg" href="https://www3.primuss.de/cgi-bin/bew_anmeldung_v3/index.pl?Session=&amp;FH=fhc&amp;Email=&amp;Portal=1&amp;Language=en" target="_blank"
+      rel="noopener noreferrer">
+      Hochschule Coburg
+    </a>
+
+    <a class="college-btn btn-uni-assist" href="https://my.uni-assist.de/" target="_blank" rel="noopener noreferrer">
+      uni-assist
+    </a>
+
+    <!-- Disabled / No-Link Buttons -->
+    <a class="college-btn btn-weimar"
+      href="https://campusportal.uni-weimar.de/qisserver/pages/cs/sys/portal/hisinoneStartPage.faces" target="_blank"
+      rel="noopener noreferrer">
+      Bauhaus-Universität Weimar
+    </a>
+
+    <a class="college-btn btn-amberg-weiden"
+      href="https://www3.primuss.de/cgi-bin/bew_anmeldung_v3/index.pl?FH=fhaw&amp;Language=en" target="_blank"
+      rel="noopener noreferrer">
+      Ostbayerische Technische Hochschule Amberg-Weiden
+    </a>
+
+    <a class="college-btn btn-hof"
+      href="https://www3.primuss.de/cgi-bin/bew_anmeldung_v3/index.pl?FH=fhh&amp;Language=en" target="_blank"
+      rel="noopener noreferrer">
+      Hochschule Hof
+    </a>
+
+    <button type="button" class="college-btn btn-disabled" disabled>
+      RheinMain
+    </button>
+
+    <button type="button" class="college-btn btn-disabled" disabled>
+      Ostfalia
+    </button>
+
+    <a class="college-btn btn-duisburg-essen"
+      href="https://campus.uni-due.de/app_aaa/pages/cs/sys/portal/hisinoneStartPage.faces" target="_blank"
+      rel="noopener noreferrer">
+      Duisburg-Essen
+    </a>
+
+    <button type="button" class="college-btn btn-disabled" disabled>
+      Hochschule Fulda
+    </button>
+
+    <button type="button" class="college-btn btn-disabled" disabled>
+      Universität des Saarlandes
+    </button>
+
+    <a class="college-btn btn-albstadt"
+      href="https://studienbewerbung.hs-albsig.de/qisserver/pages/cs/sys/portal/hisinoneStartPage.faces" target="_blank"
+      rel="noopener noreferrer">
+      Albstadt
+    </a>
+  </div>
+</body>
+
+</html>
