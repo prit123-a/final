@@ -88,30 +88,6 @@
       font-weight: 500;
       opacity: 0.85;
       letter-spacing: 0.02em;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .deadline-countdown {
-      font-size: 0.75rem;
-      font-weight: 600;
-      padding: 1px 7px;
-      border-radius: 9999px;
-      background: rgba(255, 255, 255, 0.18);
-      letter-spacing: 0.01em;
-    }
-
-    .deadline-countdown.today {
-      background: rgba(234, 179, 8, 0.35);
-      color: #fef08a;
-    }
-
-    .deadline-countdown.gone {
-      background: rgba(239, 68, 68, 0.3);
-      color: #fca5a5;
     }
 
     /* Active Buttons */
@@ -339,22 +315,18 @@
         const diffTime = targetDate.getTime() - today.getTime();
         const diffDays = Math.round(diffTime / (1000 * 60 * 60 * 24));
 
-        const badge = document.createElement('span');
-        badge.className = 'deadline-countdown';
-
+        let statusText = '';
         if (diffDays > 0) {
           const padded = String(diffDays).padStart(2, '0');
-          badge.textContent = `${padded} days left`;
+          statusText = `${padded} days left`;
         } else if (diffDays === 0) {
-          badge.textContent = 'today';
-          badge.classList.add('today');
+          statusText = 'today';
         } else {
           const padded = String(Math.abs(diffDays)).padStart(2, '0');
-          badge.textContent = `gone ${padded} days ago`;
-          badge.classList.add('gone');
+          statusText = `gone ${padded} days ago`;
         }
 
-        el.appendChild(badge);
+        el.textContent = `${el.textContent} - ${statusText}`;
       });
     })();
   </script>
