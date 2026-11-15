@@ -19,6 +19,7 @@
     body {
       min-height: 100vh;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       background-color: #0f172a;
@@ -34,6 +35,19 @@
       color: #94a3b8;
       font-size: 1rem;
       font-weight: 500;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        justify-content: flex-start;
+        padding: 24px 16px;
+      }
+
+      .today-date {
+        position: static;
+        align-self: flex-start;
+        margin-bottom: 24px;
+      }
     }
 
     .btn-container {
