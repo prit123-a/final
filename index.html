@@ -86,8 +86,32 @@
     .btn-deadline {
       font-size: 0.8rem;
       font-weight: 500;
-      opacity: 0.8;
+      opacity: 0.85;
       letter-spacing: 0.02em;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .deadline-countdown {
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 1px 7px;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.18);
+      letter-spacing: 0.01em;
+    }
+
+    .deadline-countdown.today {
+      background: rgba(234, 179, 8, 0.35);
+      color: #fef08a;
+    }
+
+    .deadline-countdown.gone {
+      background: rgba(239, 68, 68, 0.3);
+      color: #fca5a5;
     }
 
     /* Active Buttons */
@@ -215,21 +239,21 @@
       rel="noopener noreferrer">
       <span>Universität Augsburg</span>
       <span class="btn-course">M.Sc. Computer Science</span>
-      <span class="btn-deadline">15. February</span>
+      <span class="btn-deadline" data-deadline="2027-02-15">15. February</span>
     </a>
 
     <a class="college-btn btn-aalen" href="https://onlineportal.bewerbung.htw-aalen.de/bewerbung" target="_blank"
       rel="noopener noreferrer">
       <span>Hochschule Aalen</span>
       <span class="btn-course">M.Sc. Machine Learning &amp; Data Analytics</span>
-      <span class="btn-deadline">15. December</span>
+      <span class="btn-deadline" data-deadline="2026-12-15">15. December</span>
     </a>
 
     <a class="college-btn btn-coburg" href="https://www3.primuss.de/cgi-bin/bew_anmeldung_v3/index.pl?Session=&amp;FH=fhc&amp;Email=&amp;Portal=1&amp;Language=en" target="_blank"
       rel="noopener noreferrer">
       <span>Hochschule Coburg</span>
       <span class="btn-course">Autonomous Driving</span>
-      <span class="btn-deadline">2. December</span>
+      <span class="btn-deadline" data-deadline="2026-12-02">2. December</span>
     </a>
 
     <a class="college-btn btn-uni-assist" href="https://my.uni-assist.de/" target="_blank" rel="noopener noreferrer">
@@ -242,7 +266,7 @@
       rel="noopener noreferrer">
       <span>Bauhaus-Universität Weimar</span>
       <span class="btn-course">M.Sc. Computer Science for Digital Media</span>
-      <span class="btn-deadline">15. January</span>
+      <span class="btn-deadline" data-deadline="2027-01-15">15. January</span>
     </a>
 
     <a class="college-btn btn-amberg-weiden"
@@ -250,7 +274,7 @@
       rel="noopener noreferrer">
       <span>Ostbayerische Technische Hochschule Amberg-Weiden</span>
       <span class="btn-course">M.Sc. Artificial Intelligence for Industrial Applications</span>
-      <span class="btn-deadline">8. December</span>
+      <span class="btn-deadline" data-deadline="2026-12-08">8. December</span>
     </a>
 
     <a class="college-btn btn-hof"
@@ -262,7 +286,7 @@
       <span class="btn-course">Applied Research in Computer Science (M.Sc.)</span>
       <span class="btn-course">AI-Driven Supply Chain Management (M.Sc.)</span>
       <span class="btn-course">Operational Excellence (M.B.A. &amp; Eng.)</span>
-      <span class="btn-deadline">30. November</span>
+      <span class="btn-deadline" data-deadline="2026-11-30">30. November</span>
     </a>
 
     <button type="button" class="college-btn btn-disabled" disabled>
@@ -282,7 +306,7 @@
     <button type="button" class="college-btn btn-fulda">
       <span>Hochschule Fulda</span>
       <span class="btn-course">Global Software Development (Master)</span>
-      <span class="btn-deadline">1. December</span>
+      <span class="btn-deadline" data-deadline="2026-12-01">1. December</span>
     </button>
 
     <button type="button" class="college-btn btn-disabled" disabled>
@@ -294,7 +318,7 @@
       rel="noopener noreferrer">
       <span>Albstadt-Sigmaringen University</span>
       <span class="btn-course">Industrial Artificial Intelligence (IAI)</span>
-      <span class="btn-deadline">15. January</span>
+      <span class="btn-deadline" data-deadline="2027-01-15">15. January</span>
     </a>
   </div>
 
@@ -304,6 +328,34 @@
       const options = { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' };
       const formatted = now.toLocaleDateString('en-GB', options);
       document.getElementById('dateText').textContent = formatted;
+
+      // Reset time to midnight for accurate day-difference calculation
+      const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+      document.querySelectorAll('.btn-deadline[data-deadline]').forEach(function (el) {
+        const parts = el.getAttribute('data-deadline').split('-');
+        const targetDate = new Date(parseInt(parts[0], 10), parseInt(parts[1], 10) - 1, parseInt(parts[2], 10));
+
+        const diffTime = targetDate.getTime() - today.getTime();
+        const diffDays = Math.round(diffTime / (1000 * 60 * 60 * 24));
+
+        const badge = document.createElement('span');
+        badge.className = 'deadline-countdown';
+
+        if (diffDays > 0) {
+          const padded = String(diffDays).padStart(2, '0');
+          badge.textContent = `${padded} days left`;
+        } else if (diffDays === 0) {
+          badge.textContent = 'today';
+          badge.classList.add('today');
+        } else {
+          const padded = String(Math.abs(diffDays)).padStart(2, '0');
+          badge.textContent = `gone ${padded} days ago`;
+          badge.classList.add('gone');
+        }
+
+        el.appendChild(badge);
+      });
     })();
   </script>
 </body>
