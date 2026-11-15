@@ -24,6 +24,33 @@
       background-color: #0f172a;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       padding: 32px 20px;
+      position: relative;
+    }
+
+    .today-date-badge {
+      position: absolute;
+      top: 24px;
+      left: 24px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 9999px;
+      color: #94a3b8;
+      font-size: 0.95rem;
+      font-weight: 500;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .today-date-badge .date-dot {
+      width: 8px;
+      height: 8px;
+      background-color: #10b981;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #10b981;
     }
 
     .btn-container {
@@ -182,6 +209,11 @@
 </head>
 
 <body>
+  <div class="today-date-badge" id="todayDate">
+    <span class="date-dot"></span>
+    <span id="dateText"></span>
+  </div>
+
   <div class="btn-container">
     <!-- Active Link Buttons -->
     <a class="college-btn btn-augsburg"
@@ -271,6 +303,15 @@
       <span class="btn-deadline">15. January</span>
     </a>
   </div>
+
+  <script>
+    (function () {
+      const now = new Date();
+      const options = { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' };
+      const formatted = now.toLocaleDateString('en-GB', options);
+      document.getElementById('dateText').textContent = formatted;
+    })();
+  </script>
 </body>
 
 </html>
