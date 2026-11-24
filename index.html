@@ -92,13 +92,30 @@
 
     /* Active Buttons */
     .btn-augsburg {
-      background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%);
-      box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.4);
+      background: linear-gradient(135deg, #7f1d1d 0%, #991b1b 100%);
+      box-shadow: 0 10px 25px -5px rgba(185, 28, 28, 0.4);
+      border: 1px solid rgba(239, 68, 68, 0.4);
     }
 
     .btn-augsburg:hover {
       transform: translateY(-2px);
-      box-shadow: 0 16px 32px -4px rgba(37, 99, 235, 0.6);
+      box-shadow: 0 16px 32px -4px rgba(185, 28, 28, 0.6);
+    }
+
+    .btn-status-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 9999px;
+      margin-top: 2px;
+    }
+
+    .btn-status-badge.rejected {
+      background: rgba(239, 68, 68, 0.25);
+      color: #fca5a5;
+      border: 1px solid rgba(239, 68, 68, 0.4);
     }
 
     .btn-aalen {
@@ -215,7 +232,7 @@
       rel="noopener noreferrer">
       <span>Universität Augsburg</span>
       <span class="btn-course">M.Sc. Computer Science</span>
-      <span class="btn-deadline" data-deadline="2027-02-15">15. February</span>
+      <span class="btn-status-badge rejected">Rejected</span>
     </a>
 
     <a class="college-btn btn-aalen" href="https://onlineportal.bewerbung.htw-aalen.de/bewerbung" target="_blank"
@@ -225,8 +242,9 @@
       <span class="btn-deadline" data-deadline="2026-12-15">15. December</span>
     </a>
 
-    <a class="college-btn btn-coburg" href="https://www3.primuss.de/cgi-bin/bew_anmeldung_v3/index.pl?Session=&amp;FH=fhc&amp;Email=&amp;Portal=1&amp;Language=en" target="_blank"
-      rel="noopener noreferrer">
+    <a class="college-btn btn-coburg"
+      href="https://www3.primuss.de/cgi-bin/bew_anmeldung_v3/index.pl?Session=&amp;FH=fhc&amp;Email=&amp;Portal=1&amp;Language=en"
+      target="_blank" rel="noopener noreferrer">
       <span>Hochschule Coburg</span>
       <span class="btn-course">Autonomous Driving</span>
       <span class="btn-deadline" data-deadline="2026-12-02">2. December</span>
