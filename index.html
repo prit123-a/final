@@ -204,6 +204,16 @@
       cursor: default;
     }
 
+    .btn-ostfalia {
+      background: linear-gradient(135deg, #0284c7 0%, #0f766e 100%);
+      box-shadow: 0 10px 25px -5px rgba(15, 118, 110, 0.4);
+    }
+
+    .btn-ostfalia:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 32px -4px rgba(15, 118, 110, 0.6);
+    }
+
     .college-btn:active {
       transform: translateY(0);
     }
@@ -283,11 +293,13 @@
       <span class="btn-deadline" data-deadline="2026-11-30">30. November</span>
     </a>
 
-    <button type="button" class="college-btn btn-disabled" disabled>
+    <a class="college-btn btn-ostfalia"
+      href="https://cmo.ostfalia.de/qisserver/pages/cs/sys/portal/hisinoneStartPage.faces" target="_blank"
+      rel="noopener noreferrer">
       <span>Ostfalia</span>
       <span class="btn-course">Digital Technologies (M.Sc.)</span>
       <span class="btn-deadline" data-deadline="2027-01-15">15. January</span>
-    </button>
+    </a>
 
     <a class="college-btn btn-duisburg-essen"
       href="https://campus.uni-due.de/app_aaa/pages/cs/sys/portal/hisinoneStartPage.faces" target="_blank"
