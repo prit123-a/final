@@ -327,7 +327,9 @@
 
       // Reset time to midnight for accurate day-difference calculation
       const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      const container = document.querySelector('.btn-container');
 
+      // Update deadline text and attach computed diffDays to button elements
       document.querySelectorAll('.btn-deadline[data-deadline]').forEach(function (el) {
         const parts = el.getAttribute('data-deadline').split('-');
         const targetDate = new Date(parseInt(parts[0], 10), parseInt(parts[1], 10) - 1, parseInt(parts[2], 10));
@@ -347,6 +349,52 @@
         }
 
         el.textContent = `${el.textContent} - ${statusText}`;
+
+        const btn = el.closest('.college-btn');
+        if (btn) {
+          btn.dataset.diffDays = diffDays;
+        }
+      });
+
+      // Sort buttons:
+      // 1. Buttons with active upcoming deadlines (closest first: e.g. 6 days left -> 10 -> 21...)
+      // 2. Buttons with expired deadlines (most recently gone first, then gone longest ago)
+      // 3. Buttons with no deadline (uni-assist, placeholder/undecided)
+      // 4. Rejected buttons at the very end
+      const allButtons = Array.from(container.children);
+      allButtons.sort(function (a, b) {
+        const aRejected = a.querySelector('.btn-status-badge.rejected') !== null;
+        const bRejected = b.querySelector('.btn-status-badge.rejected') !== null;
+        if (aRejected !== bRejected) return aRejected ? 1 : -1;
+
+        const aHasDiff = a.dataset.diffDays !== undefined;
+        const bHasDiff = b.dataset.diffDays !== undefined;
+
+        if (aHasDiff && bHasDiff) {
+          const aDiff = parseInt(a.dataset.diffDays, 10);
+          const bDiff = parseInt(b.dataset.diffDays, 10);
+
+          const aUpcoming = aDiff >= 0;
+          const bUpcoming = bDiff >= 0;
+
+          if (aUpcoming && bUpcoming) {
+            return aDiff - bDiff; // Closest upcoming deadline first
+          }
+          if (aUpcoming && !bUpcoming) return -1;
+          if (!aUpcoming && bUpcoming) return 1;
+
+          // Both past: order from most recently expired to longest ago
+          return bDiff - aDiff;
+        }
+
+        if (aHasDiff && !bHasDiff) return -1;
+        if (!aHasDiff && bHasDiff) return 1;
+
+        return 0;
+      });
+
+      allButtons.forEach(function (btn) {
+        container.appendChild(btn);
       });
     })();
   </script>
